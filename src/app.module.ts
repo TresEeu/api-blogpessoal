@@ -1,7 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Postagem } from './postagem/entities/postagem.entity';
+import { PostagemModule } from './postagem/postagem.module';
+import { Tema } from './tema/entities/tema.entity';
+import { TemaModule } from './tema/tema.module';
 
 @Module({
   imports: [
@@ -12,9 +14,11 @@ import { AppService } from './app.service';
       username: 'root',
       password: 'root',
       database: 'db_blogpessoal',
-      entities: [],
+      entities: [Postagem, Tema],
       synchronize: true,
-    })
+    }),
+    PostagemModule,
+    TemaModule
   ],
   controllers: [],
   providers: [],
